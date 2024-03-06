@@ -1,4 +1,4 @@
-package hibernate_one_to_many_bi.entity;
+package hibernate_one_to_many_uni.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -29,9 +29,8 @@ public class Department {
     @Column(name="min_salary")
     private int minSalary;
 
-    @OneToMany(cascade = CascadeType.ALL,
-               mappedBy = "department",
-               fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name ="department_id")
     private List<Employee> listEmployee;
 
     public Department(String departmentName, int maxSalary, int minSalary) {
@@ -45,7 +44,6 @@ public class Department {
             listEmployee = new ArrayList<>();
         }
         listEmployee.add(employee);
-        employee.setDepartment(this);
     }
 
     @Override

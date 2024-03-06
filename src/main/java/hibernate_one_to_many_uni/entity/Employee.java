@@ -1,4 +1,4 @@
-package hibernate_one_to_many_bi.entity;
+package hibernate_one_to_many_uni.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -28,9 +28,6 @@ public class Employee {
     @Column(name="salary")
     private int salary;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "department_id")
-    private Department department;
 
     public Employee(String name, String surname, int salary) {
         this.name = name;

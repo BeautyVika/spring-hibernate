@@ -16,21 +16,23 @@ public class Test1 {
 
         Session session = null;
         try {
-            session = factory.getCurrentSession();
-
-            session.beginTransaction();
-            Employee emp = session.get(Employee.class, 1);
-            session.delete(emp);
-
-            session.getTransaction().commit();
+//            session = factory.getCurrentSession();
+//
+//            session.beginTransaction();
+//            Employee emp = session.get(Employee.class, 1);
+//            session.delete(emp);
+//
+//            session.getTransaction().commit();
 
 //            session = factory.getCurrentSession();
 //
-//            Department dep = new Department("IT", 300, 1200);
-//            Employee emp1 = new Employee("Helena", "Smornova", 600);
-//            Employee emp2 = new Employee("Vika", "Ivanova", 800);
+//            Department dep = new Department("Sales", 300, 1500);
+//            Employee emp1 = new Employee("Anton", "Sidorov", 600);
+//            Employee emp2 = new Employee("Kate", "Trigulova", 800);
+//            Employee emp3 = new Employee("Anna", "Petrova", 900);
 //            dep.addEmployeeToDepartment(emp1);
 //            dep.addEmployeeToDepartment(emp2);
+//            dep.addEmployeeToDepartment(emp3);
 //
 //            session.beginTransaction();
 //            session.persist(dep);
@@ -39,14 +41,14 @@ public class Test1 {
 
 
 
-//            session = factory.getCurrentSession();
-//
-//            session.beginTransaction();
-//            Department dep = session.get(Department.class, 1);
-//            System.out.println(dep);
-//            System.out.println(dep.getListEmployee()); //получение работника по id
-//
-//            session.getTransaction().commit();
+            session = factory.getCurrentSession();
+
+            session.beginTransaction();
+            Department dep = session.get(Department.class, 3);
+            System.out.println(dep);
+            System.out.println(dep.getListEmployee()); //получение работника по id
+
+            session.getTransaction().commit();
 
         }finally {
             session.close();
