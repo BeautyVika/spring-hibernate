@@ -1,4 +1,4 @@
-package hibernate_test2.entity;
+package hibernate_one_to_one.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -10,8 +10,8 @@ import lombok.ToString;
 @Table(name = "employees")
 @Getter
 @Setter
-@NoArgsConstructor
 @ToString
+@NoArgsConstructor
 public class Employee {
 
     @Column(name="id")
@@ -41,4 +41,5 @@ public class Employee {
         this.department = department;
         this.salary = salary;
     }
+
 }
