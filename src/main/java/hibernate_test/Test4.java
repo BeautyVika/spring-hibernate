@@ -5,7 +5,9 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-public class Test2 {
+import java.util.List;
+
+public class Test4 {
     public static void main(String[] args) {
         SessionFactory factory = new Configuration()
                 .configure("hibernate.cfg.xml")
@@ -13,18 +15,16 @@ public class Test2 {
                 .buildSessionFactory();
         try {
             Session session = factory.getCurrentSession();
-            Employee employee = new Employee("Oleg", "Sidorov", "HR", 600);
             session.beginTransaction();
-            session.persist(employee);
-//            session.getTransaction().commit();
 
-            int myId = employee.getId();
-//            session = factory.getCurrentSession();
-//            session.beginTransaction();
-            Employee emp = session.get(Employee.class, myId); //получение работника по id
-            session.getTransaction().commit();  //закрытие транзакции, не забывать!
+//            Employee employee = session.get(Employee.class, 1); //изменение данных по id
+//            employee.setSalary(1500);
 
-            System.out.println(emp);
+            session.createQuery("update Employee set salary=1000 " +
+                    "where name='Alexander'").executeUpdate();
+            //изменение данных в БД по условию
+
+            session.getTransaction().commit();
 
         }finally {
             factory.close();
