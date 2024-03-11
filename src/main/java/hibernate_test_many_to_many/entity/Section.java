@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +14,7 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
+@ToString(exclude = "childrenList")
 public class Section {
 
     @Id
@@ -23,7 +25,7 @@ public class Section {
     @Column(name = "name")
     private String name;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE, CascadeType.DETACH})
     @JoinTable(name = "child_section",
             joinColumns = @JoinColumn(name ="section_id"),
             inverseJoinColumns = @JoinColumn(name = "child_id"))
@@ -40,11 +42,4 @@ public class Section {
         this.name = name;
     }
 
-    @Override
-    public String toString() {
-        return "Section{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                '}';
-    }
 }

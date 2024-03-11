@@ -11,7 +11,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "children")
-@ToString
+@ToString(exclude = "sections")
 @NoArgsConstructor
 @Getter
 @Setter
@@ -27,7 +27,7 @@ public class Child {
     @Column(name="age")
     private int age;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE, CascadeType.DETACH})
     @JoinTable(name = "child_section",
                joinColumns = @JoinColumn(name ="child_id"),
                inverseJoinColumns = @JoinColumn(name = "section_id"))
